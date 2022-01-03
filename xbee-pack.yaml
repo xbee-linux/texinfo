@@ -1,0 +1,29 @@
+schema-version: 1.0
+
+description: |
+  The Texinfo package contains programs for reading, writing, and converting info pages.
+
+  Installed programs: info, install-info, makeinfo (link to texi2any), pdftexi2dvi, pod2texi, texi2any, texi2dvi, texi2pdf, and texindex
+  Installed library: MiscXS.so, Parsetexi.so, and XSParagraph.so (all in /usr/lib/texinfo)
+  Installed directories: /usr/share/texinfo and /usr/lib/texinfo
+
+  Short Descriptions
+    info: Used to read info pages which are similar to man pages, but often go much deeper than just explaining all the available command line options [For example, compare man bison and info bison.]
+    install-info: Used to install info pages; it updates entries in the info index file
+    makeinfo: Translates the given Texinfo source documents into info pages, plain text, or HTML
+    pdftexi2dvi: Used to format the given Texinfo document into a Portable Document Format (PDF) file
+    pod2texi: Converts Pod to Texinfo format
+    texi2any: Translate Texinfo source documentation to various other formats
+    texi2dvi: Used to format the given Texinfo document into a device-independent file that can be printed
+    texi2pdf: Used to format the given Texinfo document into a Portable Document Format (PDF) file
+    texindex: Used to sort Texinfo index files
+
+builder: ./texinfo-builder
+
+var:
+  version: 6.8
+
+provision:
+  - copy:
+      builder: texinfo
+      todir: /
