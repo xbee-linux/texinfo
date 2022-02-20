@@ -1,5 +1,7 @@
 schema-version: 1.0
 
+type: builder
+
 description: |
   The Texinfo package contains programs for reading, writing, and converting info pages.
 
@@ -18,12 +20,21 @@ description: |
     texi2pdf: Used to format the given Texinfo document into a Portable Document Format (PDF) file
     texindex: Used to sort Texinfo index files
 
-builder: ./texinfo-builder
-
-var:
+in:
   version: 6.8
 
 provision:
-  - copy:
-      builder: texinfo
-      todir: /
+  - url:
+      from: https://ftp.gnu.org/gnu/texinfo/texinfo-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - sed -e 's/__attribute_nonnull__/__nonnull/' -i gnulib/lib/malloc/dynarray-skeleton.c
+        - ./configure --prefix=/usr
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/texinfo-{% version %}"
+
+
