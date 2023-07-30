@@ -20,13 +20,13 @@ description: |
     texi2pdf: Used to format the given Texinfo document into a Portable Document Format (PDF) file
     texindex: Used to sort Texinfo index files
 
-in:
+var:
   version: 6.8
 
 provision:
   - url:
-      from: https://ftp.gnu.org/gnu/texinfo/texinfo-{% version %}.tar.xz
-      todir: "{% xbeeSrc %}"
+      from: https://ftp.gnu.org/gnu/texinfo/texinfo-{{ .version }}.tar.xz
+      todir: "{{ .xbee.src }}"
 
 build:
   - shell:
@@ -34,7 +34,7 @@ build:
         - sed -e 's/__attribute_nonnull__/__nonnull/' -i gnulib/lib/malloc/dynarray-skeleton.c
         - ./configure --prefix=/usr
         - make
-        - make install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/texinfo-{% version %}"
+        - make install DESTDIR={{ .xbee.out }}
+      directory: "{{ .xbee.src }}/texinfo-{{ .version }}"
 
 
