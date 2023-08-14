@@ -24,9 +24,7 @@ var:
   version: 6.8
 
 provision:
-  - url:
-      from: https://ftp.gnu.org/gnu/texinfo/texinfo-{{ .version }}.tar.xz
-      todir: "{{ .xbee.src }}"
+  - url: https://ftp.gnu.org/gnu/texinfo/texinfo-{{ .version }}.tar.xz
 
 build:
   - shell:
