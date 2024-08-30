@@ -21,7 +21,8 @@ description: |
     texindex: Used to sort Texinfo index files
 
 var:
-  version: 6.8
+  xbee:
+    version: 6.8
 
 provision:
   - url: https://ftp.gnu.org/gnu/texinfo/texinfo-{{ .version }}.tar.xz
